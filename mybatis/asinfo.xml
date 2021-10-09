@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0/EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="asinfo">
+	
+		
+		<resultMap id="asinfoMap" type="web.as.vo.asinfoVO">
+			<result property="title" column="title"/>
+			<result property="id" column="id"/>		
+			<result property="addr" column="addr"/>
+			<result property="phone" column="phone"/>
+			<result property="email" column="email"/>
+		</resultMap>
+	
+		
+		
+		
+		<select id="selectAsInfoList" resultMap="asinfoMap">
+			select * from asinfo
+			where 1=1
+			<if test="product !=null and product!=''">
+			and product = #{product}
+			</if>
+			<if test="title !=null and title!=''">
+			and title like concat('%',#{title},'%')
+			</if>
+			
+		</select>
+</mapper>
